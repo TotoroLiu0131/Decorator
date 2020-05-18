@@ -6,7 +6,6 @@ namespace Decorator.Repositories
     {
         public void Query()
         {
-            throw new NotImplementedException();
         }
     }
 }

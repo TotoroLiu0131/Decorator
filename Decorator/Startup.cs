@@ -1,3 +1,4 @@
+using Decorator.Decorators;
 using Decorator.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,9 +23,13 @@ namespace Decorator
         {
             services.AddControllers();
 
-            services.TryAddSingleton<IRepo, Repo>();
-
+            services.TryAddTransient<IRepo, Repo>();
             services.TryDecorate<IRepo, Repo>();
+
+            services.TryAddTransient<RepoErrorHandler>();
+            services.TryDecorate<IRepo, RepoErrorHandler>();
+            services.TryAddTransient<RepoBusinessLogic>();
+            services.TryDecorate<IRepo, RepoBusinessLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,18 +2,18 @@ using Decorator.Repositories;
 
 namespace Decorator.Decorators
 {
-    public class BaseRepoDecorator : IRepo
+    public class BaseDecorator : IRepo
     {
         private readonly IRepo _repo;
 
-        public BaseRepoDecorator(IRepo repo)
+        public BaseDecorator(IRepo repo)
         {
             _repo = repo;
         }
 
-        public void Query()
+        public virtual OrderDto Query()
         {
-            _repo.Query();
+            return _repo.Query();
         }
     }
 }

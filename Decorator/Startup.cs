@@ -24,12 +24,11 @@ namespace Decorator
             services.AddControllers();
 
             services.TryAddTransient<IRepo, Repo>();
-            services.TryDecorate<IRepo, Repo>();
 
-            services.TryAddTransient<RepoErrorHandler>();
-            services.TryDecorate<IRepo, RepoErrorHandler>();
-            services.TryAddTransient<RepoBusinessLogic>();
-            services.TryDecorate<IRepo, RepoBusinessLogic>();
+            services.TryAddTransient<ErrorHandlerDecorator>();
+            services.TryDecorate<IRepo, ErrorHandlerDecorator>();
+            services.TryAddTransient<BusinessLogicDecorator>();
+            services.TryDecorate<IRepo, BusinessLogicDecorator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
